@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rocketseat: React - Fundamentos</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <!-- react and react dom must be in same version   -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+      function Button({ className = "" }) {
+        // teste = "bg-white rounded-sm p-1", ...rest
+        // const appliedStyle = className ? className : "bg-white rounded-sm p-1";
+        // const style = className || "";
+        const style = `bg-white rounded-sm p-2 !${className}`;
+
+        return <button className={style}>Press here.</button>;
+      }
+
+      // point of input || rendering all the others components
+      function App() {
+        return (
+          <main className="flex flex-col gap-4 bg-red-400 h-screen justify-center items-center">
+            <h1 className="text-4xl">Hello, my friend.</h1>
+
+            <Button className="bg-red-100 p-4 rounded-md" />
+            <Button />
+          </main>
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+    </script>
+  </body>
+</html>
