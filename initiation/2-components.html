@@ -25,7 +25,7 @@
         const new_style = className
         .split(' ').map(word => `!${word}`).join(' ');  
 
-        const style = `bg-white rounded-sm p-2 !${new_style}`;
+        const style = `bg-white rounded-sm p-2 ${new_style}`;
 
         return <button className={style}>Press here.</button>;
       }
@@ -36,8 +36,8 @@
           <main className="flex flex-col gap-4 bg-red-400 h-screen justify-center items-center">
             <h1 className="text-4xl">Hello, my friend.</h1>
 
-            <Button className="bg-red-100 p-8 rounded-md" />
-            <Button />
+            <Button className="rounded-md px-8" />
+            <Button className="bg-purple-500 rounded-md"/>
           </main>
         );
       }
