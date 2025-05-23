@@ -96,7 +96,13 @@
         );
       };
 
-      
+      function Card({ children, className, ...props }) {
+        return (
+          <div className={`bg-(--background) shadow-(--shadow) rounded 2xl ${className ? className : ""}`}>
+            {children}
+          </div>
+        );
+      };
 
       function App() {
         return (
@@ -104,6 +110,8 @@
             <Text variant="muted">Example</Text>
             <Button>CE</Button>
             <Button variant="primary">CE</Button>
+
+            <Card />
           </main>
         );
       }
