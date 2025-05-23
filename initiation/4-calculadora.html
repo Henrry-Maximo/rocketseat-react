@@ -75,7 +75,8 @@
       }
 
       function Button({ variant="default", children, className, ...props }) {
-        return <Text
+        return (
+          <Text
           as="button"
           variant="heading"
           className={`
@@ -89,8 +90,13 @@
             ${className ? className : ""} 
           `}
           {...props}
-        >{children}</Text>
+        >
+        {children}
+        </Text>
+        );
       };
+
+      
 
       function App() {
         return (
