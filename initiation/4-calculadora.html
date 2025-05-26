@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -58,7 +58,7 @@
         return <span>{children}</span>
       } */
 
-      function Text({ as = 'span', variant, className, children, ...props }) {
+      function Text({ as = "span", variant, className, children, ...props }) {
         return React.createElement(
           as,
           {
@@ -66,20 +66,20 @@
             ...props,
           },
           children
-        )
-      };
-
-      const buttonVariants = {
-        default: 'bg-(--background)',
-        primary: 'bg-(--primary)'
+        );
       }
 
-      function Button({ variant="default", children, className, ...props }) {
+      const buttonVariants = {
+        default: "bg-(--background)",
+        primary: "bg-(--primary)",
+      };
+
+      function Button({ variant = "default", children, className, ...props }) {
         return (
           <Text
-          as="button"
-          variant="heading"
-          className={`
+            as="button"
+            variant="heading"
+            className={`
             flex items-center justify-center rounded-xl
             p-3 cursor-pointer text-(--text)  
             bg-linear-(--gradient)
@@ -89,37 +89,92 @@
             ${buttonVariants[variant]}
             ${className ? className : ""} 
           `}
-          {...props}
-        >
-        {children}
-        </Text>
+            {...props}
+          >
+            {children}
+          </Text>
         );
-      };
+      }
 
       function Card({ children, className, ...props }) {
         return (
-          <div className={`bg-(--background) shadow-(--shadow) rounded 2xl ${className ? className : ""}`}>
+          <div
+            className={`bg-(--background) shadow-(--shadow) rounded 2xl ${
+              className ? className : ""
+            }`}
+          >
             {children}
           </div>
         );
-      };
+      }
+
+      /* It's transform in component, but is opcional */
+      function CalculatorDisplay({ operation, result }) {
+        return (
+          <div
+            className={`flex flex-col gap-2 px-[1.375rem] cursor-default select-none`}
+          >
+            <Text
+              as="div"
+              variant="muted"
+              className="flex items-center justify-center"
+            >
+              {operation}
+            </Text>
+
+            <div className={`flex items-center justify-between`}>
+              <Text variant="muted">=</Text>
+              <Text variant="blast">{result}</Text>
+            </div>
+          </div>
+        );
+      }
 
       function Calculator() {
         return (
-          <Card className={`flex flex-col gap-[1.625rem] w-[22.25rem] pt-14 px-8 pb-8`}>
-            <div className={`flex flex-col gap-2 px-[1.375rem] cursor-default select-none`}>
-              <Text as="div" variant="muted" className="flex items-center justify-center">
-                1 + 1
-              </Text>
+          <Card
+            className={`flex flex-col gap-[1.625rem] w-[22.25rem] pt-14 px-8 pb-8`}
+          >
+            <CalculatorDisplay operation="1 + 1" result="2" />
 
-              <div className={`flex items-center justify-between`}>
-                <Text variant="muted">=</Text>
-                <Text variant="blast">2</Text>
+            <div className="flex flex-col gap-3">
+              <div className="flex gap-3">
+                <Button className="w-16 h-16">CE</Button>
+                <Button className="flex-1 h-16">C</Button>
+                <Button className="w-16 h-16" variant="primary">/</Button>
               </div>
+
+              <div className="flex gap-3">
+                <Button>7</Button>
+                <Button>8</Button>
+                <Button>9</Button>
+                <Button>X</Button>
+              </div>
+
+              <div className="flex gap-3">
+                <Button>4</Button>
+                <Button>5</Button>
+                <Button>6</Button>
+                <Button>-</Button>
+              </div>
+
+              <div className="flex gap-3">
+                <Button>1</Button>
+                <Button>2</Button>
+                <Button>3</Button>
+                <Button>+</Button>
+              </div>
+
+              <div className="flex gap-3">
+                <Button>0</Button>
+                <Button>,</Button>
+                <Button>=</Button>
+              </div>
+            
             </div>
           </Card>
-        )
-      };
+        );
+      }
 
       function App() {
         return (
