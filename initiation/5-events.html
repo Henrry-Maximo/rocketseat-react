@@ -41,13 +41,26 @@
 
     function Alert3() {
       function handleAlertClick(event) {
-        alert(event.target.previous$ibling.value);
+        alert(event.target.previousSibling.value);
+        alert(event.target.nextSibling.value);
+      }
+
+      function handleInputChange(event) {
+        console.log(event.target.value);
       }
 
       return (
         <div>
-          <input type="text" placeholder="Here..." />
-          <button onClick={handleAlertClick}>Display Alert of Filed Text</button>
+          <input 
+            type="text" 
+            placeholder="Here..." 
+            onChange={handleInputChange}
+          />
+          <button 
+            // onClick={handleAlertClick}
+          >
+            Display Alert of Filed Text</button>
+          <input type="text" placeholder="Here..." value="It's work." />
         </div>
       )
     }
