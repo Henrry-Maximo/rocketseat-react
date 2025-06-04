@@ -1,46 +1,58 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rocketseat: React - Fundamentos</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rocketseat: React - Fundamentos</title>
-</head>
+  <body>
+    <div id="root"></div>
 
-<body>
-  <div id="root"></div>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 
-  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script type="text/babel">
+      function ListNames() {
+        // Creating data of list, and catching only names because the useState is return values how names and setNames
+        const [names] = React.useState(["Teste1", "Teste2", "Teste3"]);
 
-  <script type="text/babel">
+        // State created for filter of search with new values
+        const [search, setSearch] = React.useState("");
 
-    function ListNames() {
-      const [names] = React.useState(['Teste 01', 'Teste 02', 'Teste03'])
+        return (
+          <div>
+            <input
+              type="text"
+              placeholder="Searching name..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <ul>
+              {names
+                .filter((row) =>
+                  row.toLowerCase().includes(search.toLowerCase())
+                )
+                .map((row, index) => 
+                  <li key={`${index}-${row}`}>{row}</li>
+                )}
+            </ul>
+          </div>
+        );
+      }
 
-      return (
-        <ul>
-          {names.map((index, name) => {
-            <li key={`${index}-${name}`}>{name}</li>
-          })}
-        </ul>
-      );
-    }
+      function App() {
+        return (
+          <main className="p-3">
+            <ListNames />
+          </main>
+        );
+      }
 
-    function App() {
-      return (
-        <main className="p-3">
-          <Counter />
-        </main>
-      );
-    };
-
-    ReactDOM.createRoot(document.getElementById('root')).render(<App />)
-
-  </script>
-</body>
-
+      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+    </script>
+  </body>
 </html>
 
 <!-- 
