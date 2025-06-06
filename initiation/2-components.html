@@ -41,7 +41,7 @@
       function Button({ children, variant }) {
         return (
           <button
-            className={variant === "primary" ? "bg-purple-500" : "bg-gray-500"}
+            className={`${variant === "primary" ? "bg-purple-500" : "bg-gray-500"} text-white p-4 rounded`}
           >
             {children}
           </button>
