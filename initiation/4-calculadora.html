@@ -193,29 +193,41 @@
             <Text
               as="div"
               variant="muted"
-              className="flex items-center justify-center"
+              className="flex items-center justify-center h-7"
             >
-              {operation}
+              {result && operation}
             </Text>
 
-            <div className={`flex items-center justify-between`}>
+            <div className={`flex items-center justify-between h-9`}>
               <Text variant="muted">=</Text>
-              <Text variant="blast">{result}</Text>
+              <Text variant="blast">{result || operation}</Text>
             </div>
           </div>
         );
       }
 
       function Calculator() {
+        const [operation, setOperation] = React.useState('');
+        const [result, setResult] = React.useState('');
+
         const handleInputClick = (input) => {
+          if (input === "=") {
+            const operationResult = eval(operation);
+            setResult(operationResult);
+            console.log(operationResult);
+            return 
+          }
+
           console.log(input);
+
+          setOperation(`${operation} ${input}`)
         }
 
         return (
           <Card
             className={`flex flex-col gap-[1.625rem] w-[22.25rem] pt-14 px-8 pb-8`}
           >
-            <CalculatorDisplay operation="1 + 1" result="2" />
+            <CalculatorDisplay operation={operation} result={result} />
 
             <div className="flex flex-col gap-3">
               {buttons.map((row, index) => (
