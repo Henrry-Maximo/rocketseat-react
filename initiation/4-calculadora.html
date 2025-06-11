@@ -212,7 +212,7 @@
 
         const handleInputClick = (input) => {
           if (input === "=") {
-            const operationResult = eval(operation);
+            const operationResult = eval(operation); // execute any string js e retornar
             setResult(operationResult);
             console.log(operationResult);
             return 
@@ -220,7 +220,12 @@
 
           console.log(input);
 
-          setOperation(`${operation} ${input}`)
+          if (input === "," && !operation.endsWith(',')) {
+            setOperation(` ${operation},`);
+            return;
+          }
+
+          setOperation(`${operation}${operation.endsWith(',') ? "" : " "} ${input}`)
         }
 
         return (
