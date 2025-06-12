@@ -211,10 +211,24 @@
         const [result, setResult] = React.useState('');
 
         const handleInputClick = (input) => {
+          if (input === "C") {
+            setOperation("");
+            setResult("");
+            return
+          }
+
+          if (input === "CE") {
+            setResult("");
+            setOperation(operation.slice(0, -2));
+            return
+          }
+
           if (input === "=") {
-            const operationResult = eval(operation); // execute any string js e retornar
-            setResult(operationResult);
-            console.log(operationResult);
+            const operationResult = eval(operation.replace(/,/g, '.')); // execute any string js e return
+            const parsedResult = operationResult.toString()?.replace(/\./g, ',')
+            setResult(parsedResult);
+
+            console.log(parsedResult);
             return 
           }
 
@@ -225,7 +239,7 @@
             return;
           }
 
-          setOperation(`${operation}${operation.endsWith(',') ? "" : " "} ${input}`)
+          setOperation(`${operation}${operation.endsWith(',') ? "" : " "}${input}`)
         }
 
         return (
