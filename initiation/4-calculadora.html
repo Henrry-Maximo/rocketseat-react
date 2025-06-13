@@ -234,6 +234,12 @@
 
           console.log(input);
 
+          if (result) {
+            setOperation(isNaN(input) ? `${result}${input === "," ? "" : " "}${input}` : input);
+            setOperation("");
+            return;
+          }
+
           if (input === "," && !operation.endsWith(',')) {
             setOperation(` ${operation},`);
             return;
