@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rocketseat: React - Fundamentos</title>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+  <script type="text/babel">
+
+    function Counter() {
+      const [counter, setCounter] = React.useState(0);
+
+      const [ name, setName ] = React.useState('');
+
+      // When the page is execute, the componet is mounted.
+      React.useEffect(() => {
+        console.log(`Component mounted!`);
+
+        return () => {
+          console.log(`Component disassembled`)
+        }
+      }, []);
+
+      React.useEffect(() => {
+        if (counter > 0) console.log(`Count update: ${counter}`);
+      }, [counter]);
+
+      React.useEffect(() => {
+        console.log(`Count or name updates.`);
+      }, [counter, name]);
+
+      return (
+        <>
+          <div>
+            <label htmlFor="name">Name:</label>
+            <input  
+              id="name"  
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+
+          <p>Count: {counter}</p>
+          
+          <button onClick={() => setCounter(counter + 1)}>Update</button>
+
+          <button onClick={() => setCounter((prevValue) => prevValue + 1)}>Update</button>
+
+          <button onClick={() => setCounter((prevValue) => prevValue - 1)}>Rollback</button>
+        </>
+      )
+    }
+
+    function App() {
+      const [ show, setShow ] = React.useState(true);
+
+      return (
+        <main className="p-3">
+          <button onClick={() => setShow(!show)}>Mostrar/Ocultar Contador</button>
+          <hr/>
+          {show && <Counter />}
+        </main>
+      );
+    };
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />)
+
+  </script>
+</body>
+
+</html>
+
+<!-- 
+  1. setCounter(counter + 1) — tu tá usando o valor atual que tá ali no escopo. Só que… e se tiver várias atualizações acontecendo ao mesmo tempo? Pode dar ruim, porque o valor pode ficar desatualizado!
+
+  2. setCounter((prevValue) => prevValue + 1) — aqui tu tá jogando com segurança! Sempre pega o valor mais recente, não importa quantas atualizações tiverem na fila.
+-->
