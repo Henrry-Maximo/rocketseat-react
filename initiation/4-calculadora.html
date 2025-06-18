@@ -188,8 +188,19 @@
       function CalculatorProvider({ children }) {
         const [history, setHistory] = React.useState([]);
 
+        const historyStorageKey = 'history';
+
         function updateHistory(operation, parsedResult) {
-          setHistory((prev) => [...prev, `${operation}=${parsedResult}`]);
+          setHistory((prev) => {
+            const updatedHistory = [...prev, `${operation}=${parsedResult}`];
+
+            localStorage.setItem(
+              historyStorageKey,
+              JSON.stringify(updatedHistory)
+            );
+
+            return updatedHistory;
+          });
         }
 
         return (
@@ -208,7 +219,7 @@
             <Text
               as="div"
               variant="muted"
-              className="flex items-center justify-center h-7"
+              className="flex items-center justify-end h-7"
             >
               {result && operation}
             </Text>
