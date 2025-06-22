@@ -2,25 +2,26 @@
 // import teste from './assets/teste.png'
 
 import Text from "./components/text";
+import trashIcon from "./assets/icons/trash.svg";
 
 export default function App() {
   return (
-    <div className="flex flex-col gap-2">
-      <Text variant="body-md-bold" className="text-pink-base">
-        Olá
-      </Text>
+    <div className="grid gap-3">
+      <div className="flex flex-col gap-2">
+        <Text variant="body-md-bold" className="text-pink-base">
+          Olá
+        </Text>
 
-      <Text className="text-green-base">
-        Olá mundo!
-      </Text>
+        <Text className="text-green-base">Olá mundo!</Text>
 
-      <Text variant="body-md-bold">
-        Olá mundo!
-      </Text>
+        <Text variant="body-md-bold">Olá mundo!</Text>
 
-      <Text>
-        Levar o dog para passear
-      </Text>
+        <Text>Levar o dog para passear</Text>
+      </div>
+
+      <div className="flex gap-1">
+        <img src={trashIcon} className="fill-pink-base" />
+      </div>
     </div>
   );
 }
