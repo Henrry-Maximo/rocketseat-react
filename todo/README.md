@@ -6,3 +6,4 @@
     "cva",
     "cx"
    ]
+- npm install -D vite-plugin-svgr (transformar svg em um component react)

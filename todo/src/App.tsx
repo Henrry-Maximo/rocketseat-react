@@ -2,7 +2,8 @@
 // import teste from './assets/teste.png'
 
 import Text from "./components/text";
-import trashIcon from "./assets/icons/trash.svg";
+// primeira letra de um componente deve ser em maiuscúla
+import TrashIcon from "./assets/icons/trash.svg?react";
 
 export default function App() {
   return (
@@ -20,7 +21,8 @@ export default function App() {
       </div>
 
       <div className="flex gap-1">
-        <img src={trashIcon} className="fill-pink-base" />
+        <TrashIcon className="fill-green-base" />
+        {/* <img src={TrashIcon} className="fill-pink-base" /> */}
       </div>
     </div>
   );
