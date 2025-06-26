@@ -4,6 +4,13 @@
 import Text from "./components/text";
 // primeira letra de um componente deve ser em maiuscúla
 import TrashIcon from "./assets/icons/trash.svg?react";
+import PlusIcon from "./assets/icons/plus.svg?react";
+import PencilIcon from "./assets/icons/pencil.svg?react";
+import SpinnerIcon from "./assets/icons/spinner.svg?react";
+import XIcon from "./assets/icons/x.svg?react";
+
+
+import Icon from "./components/icon";
 
 export default function App() {
   return (
@@ -21,7 +28,12 @@ export default function App() {
       </div>
 
       <div className="flex gap-1">
-        <TrashIcon className="fill-green-base" />
+        <Icon svg={TrashIcon} className="fill-green-base" />
+        <Icon svg={PlusIcon} className="fill-green-base" />
+        <Icon svg={PencilIcon} className="fill-green-base" />
+        <Icon svg={SpinnerIcon} className="fill-green-base" />
+        <Icon svg={XIcon} className="fill-green-base" />
+        
         {/* <img src={TrashIcon} className="fill-pink-base" /> */}
       </div>
     </div>
