@@ -7,8 +7,7 @@ import TrashIcon from "./assets/icons/trash.svg?react";
 import PlusIcon from "./assets/icons/plus.svg?react";
 import PencilIcon from "./assets/icons/pencil.svg?react";
 import SpinnerIcon from "./assets/icons/spinner.svg?react";
-import XIcon from "./assets/icons/x.svg?react";
-
+import XIcon from "./assets/icons/wrong.svg?react";
 
 import Icon from "./components/icon";
 
@@ -31,7 +30,7 @@ export default function App() {
         <Icon svg={TrashIcon} className="fill-green-base" />
         <Icon svg={PlusIcon} className="fill-green-base" />
         <Icon svg={PencilIcon} className="fill-green-base" />
-        <Icon svg={SpinnerIcon} className="fill-green-base" />
+        <Icon svg={SpinnerIcon} animate className="fill-green-base" />
         <Icon svg={XIcon} className="fill-green-base" />
         
         {/* <img src={TrashIcon} className="fill-pink-base" /> */}
