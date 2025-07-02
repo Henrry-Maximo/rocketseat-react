@@ -10,6 +10,7 @@ import SpinnerIcon from "./assets/icons/spinner.svg?react";
 import XIcon from "./assets/icons/wrong.svg?react";
 
 import Icon from "./components/icon";
+import Badge from "./components/badge";
 
 export default function App() {
   return (
@@ -34,6 +35,11 @@ export default function App() {
         <Icon svg={XIcon} className="fill-green-base" />
         
         {/* <img src={TrashIcon} className="fill-pink-base" /> */}
+      </div>
+
+      <div>
+        <Badge variant="secondary">5</Badge>
+        <Badge variant="primary">2 de 5</Badge>
       </div>
     </div>
   );
