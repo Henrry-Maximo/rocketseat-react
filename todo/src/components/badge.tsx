@@ -5,9 +5,11 @@ import { cva, type VariantProps } from "class-variance-authority";
 /*
  * Inicializa o método `cva`
  * Estabelece o layout comum de retorno
- */
+*/
 
+// definir background
 export const badgeVariants = cva(
+  // inline-flex -> tornar flexível, mas não ocupar toda a linha
   "inline-flex items-center justify-center rounded-full",
   {
     variants: {
@@ -26,6 +28,7 @@ export const badgeVariants = cva(
   }
 );
 
+// definir texto
 export const badgeTextVariants = cva("", {
   variants: {
     variant: {
