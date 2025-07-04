@@ -1,12 +1,15 @@
-import type React from "react";
-import type Icon from "./icon";
+import React from "react";
+
 import { cva, type VariantProps } from "class-variance-authority";
+
+import Icon from "./icon";
+import Text from "./text";
 
 export const buttonVariants = cva(
   `
-  flex items-center justify-center cursor-pointer
-  transition rounded-lg group gap-2
-`,
+    flex items-center justify-center cursor-pointer
+    transition rounded-lg group gap-2
+  `,
   {
     variants: {
       variant: {
@@ -17,15 +20,26 @@ export const buttonVariants = cva(
       },
       disabled: {
         true: "opacity-50 pointer-events-none",
-      },
-      defaultVariants: {
-        variant: "primary",
-        size: "md",
-        disabled: false,
-      },
+      }
+    },
+    defaultVariants: {
+      variant: "primary",
+      size: "md",
+      disabled: false,
     },
   }
 );
+
+export const buttonTextVariants = cva("", {
+  variants: {
+    variant: {
+      primary: "text-gray-400",
+    },
+  },
+  defaultVariants: {
+    variant: "primary",
+  },
+});
 
 interface ButtonProps
   extends Omit<React.ComponentProps<"button">, "size" | "disabled">,
@@ -42,5 +56,24 @@ export default function Button({
   icon: IconComponent,
   ...props
 }: ButtonProps) {
-  return <button {...props}>{children}</button>;
+  return (
+    <button 
+      {...props} 
+      className={buttonVariants({ className, disabled, size, variant })}
+      disabled={disabled ? disabled : false}
+    >
+      {IconComponent && (
+        <Icon
+          svg={IconComponent}
+          // className={buttonVariants({ variant, size })}
+        />
+      )}
+      <Text 
+        variant="body-md-bold"
+        className={buttonTextVariants({variant})}
+      >
+        {children}
+      </Text>
+    </button>
+  );
 }
